@@ -1,0 +1,245 @@
+{
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^wd-(.*)": "wot-design-uni/components/wd-$1/wd-$1.vue"
+		}
+	},
+	"pages": [
+		{
+			"path": "pages/home/index",
+			"type": "home",
+			"needLogin": true,
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/fn/index",
+			"type": "fn",
+			"needLogin": true,
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "功能"
+			}
+		},
+		{
+			"path": "pages/my/index",
+			"type": "my",
+			"needLogin": true,
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "我的"
+			}
+		}
+	],
+	"tabBar": {
+		"color": "#747474",
+		"selectedColor": "#1082FF",
+		"backgroundColor": "#FFFFFF",
+		"borderStyle": "black",
+		"height": "50px",
+		"fontSize": "10px",
+		"iconWidth": "24px",
+		"spacing": "3px",
+		"list": [
+			{
+				"iconPath": "static/tabbar/home.png",
+				"selectedIconPath": "static/tabbar/home_active.png",
+				"pagePath": "pages/home/index",
+				"text": "首页"
+			},
+			{
+				"iconPath": "static/tabbar/fn.png",
+				"selectedIconPath": "static/tabbar/fn_active.png",
+				"pagePath": "pages/fn/index",
+				"text": "功能"
+			},
+			{
+				"iconPath": "static/tabbar/my.png",
+				"selectedIconPath": "static/tabbar/my_active.png",
+				"pagePath": "pages/my/index",
+				"text": "我的"
+			}
+		]
+	},
+	"subPackages": [
+		{
+			"root": "pagesAccount",
+			"pages": [
+				{
+					"path": "login/index",
+					"name": "login",
+					"needLogin": false,
+					"style": {
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "register/index",
+					"name": "register",
+					"needLogin": false,
+					"style": {
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "register/personal",
+					"name": "registerPersonal",
+					"needLogin": false,
+					"style": {
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "register/firm",
+					"name": "registerFirm",
+					"needLogin": false,
+					"style": {
+						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "forgetPassword/index",
+					"name": "forgetPassword",
+					"needLogin": false,
+					"style": {
+						"navigationStyle": "custom"
+					}
+				}
+			]
+		},
+		{
+			"root": "pagesMy",
+			"pages": [
+				{
+					"path": "myInfo/index",
+					"name": "myInfo",
+					"needLogin": true,
+					"style": {
+						"navigationStyle": "custom",
+						"navigationBarTitleText": "个人档案"
+					}
+				},
+				{
+					"path": "receiveUser/index",
+					"name": "receiveUser",
+					"needLogin": true,
+					"style": {
+						"navigationStyle": "custom",
+						"navigationBarTitleText": "用户收款"
+					}
+				},
+				{
+					"path": "switchAccount/index",
+					"name": "switchAccount",
+					"needLogin": true,
+					"style": {
+						"navigationStyle": "custom",
+						"navigationBarTitleText": "切换账号"
+					}
+				},
+				{
+					"path": "about/index",
+					"name": "about",
+					"needLogin": true,
+					"style": {
+						"navigationStyle": "custom",
+						"navigationBarTitleText": "关于我们"
+					}
+				},
+				{
+					"path": "changePassword/index",
+					"name": "changePassword",
+					"needLogin": true,
+					"style": {
+						"navigationStyle": "custom",
+						"navigationBarTitleText": "修改密码"
+					}
+				},
+				{
+					"path": "i18n/index",
+					"name": "i18n",
+					"needLogin": true,
+					"style": {
+						"navigationStyle": "custom",
+						"navigationBarTitleText": "多语言"
+					}
+				}
+			]
+		},
+		{
+			"root": "pagesFn",
+			"pages": [
+				{
+					"path": "workInitiate/index",
+					"name": "workInitiate",
+					"needLogin": true,
+					"style": {
+						"navigationStyle": "custom",
+						"navigationBarTitleText": "发起工单"
+					}
+				},
+				{
+					"path": "workInquire/index",
+					"name": "workInquire",
+					"needLogin": true,
+					"style": {
+						"navigationStyle": "custom",
+						"navigationBarTitleText": "工单查询"
+					}
+				},
+				{
+					"path": "consult/index",
+					"name": "consult",
+					"needLogin": true,
+					"style": {
+						"navigationStyle": "custom",
+						"navigationBarTitleText": "在线咨询"
+					}
+				},
+				{
+					"path": "components/workDetails",
+					"name": "workDetails",
+					"needLogin": true,
+					"style": {
+						"navigationStyle": "custom",
+						"navigationBarTitleText": "工单详情"
+					}
+				}
+			]
+		}
+	],
+	"preloadRule": {
+		"pages/home/index": {
+			"network": "all",
+			"packages": [
+				"pagesAccount"
+			]
+		},
+		"pages/fn/index": {
+			"network": "all",
+			"packages": [
+				"pagesFn"
+			]
+		},
+		"pages/my/index": {
+			"network": "all",
+			"packages": [
+				"pagesMy"
+			]
+		}
+	},
+	"globalStyle": {
+		"navigationStyle": "default",
+		"navigationBarTitleText": "智慧运维",
+		"navigationBarBackgroundColor": "#f8f8f8",
+		"navigationBarTextStyle": "black",
+		"backgroundColor": "#FFFFFF",
+		"app-plus": {
+			"scrollIndicator": "false",
+			"softinputMode": "adjustResize"
+		}
+	}
+}
