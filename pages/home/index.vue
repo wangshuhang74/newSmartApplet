@@ -41,7 +41,7 @@ watch(() => {
 })
 
 onShow(() => {
-  const isLogin = userStore.isLoginFn()
+  userStore.isLoginFn()
   if (wordList.value.length == 0) {
     getLocation()
   }
@@ -86,7 +86,6 @@ const getListFn = async () => {
     if (code2 != 0) return Toast.error(msg2);
     oldMaintain.value = data2;
 
-
     wordList.value = [...data1.records, ...data2.records]
     addMarkers([...wordList.value, { orderId: getTimes(), lat: 39.90923, lng: 116.397428, orderType: 3, }]);
   } catch (error) {
@@ -96,9 +95,6 @@ const getListFn = async () => {
 }
 const addMarkers = (list) => {
   markers.value = list.map((item) => {
-    // console.log("item.lat", item.lat);
-    // console.log("item.lng", item.lng);
-    console.log("🚀 ~ markers.value=list.map ~ item.orderId:", Number(item.orderId))
     return {
       id: Number(item.orderId),
       latitude: item.lat,
@@ -109,7 +105,7 @@ const addMarkers = (list) => {
       workItem: item
     }
   })
-  // console.log("markers.value2", markers.value);
+  console.log("🚀 ~ markers.value=list.map ~ markers.value:", markers.value)
   // setMyMarker(userMap.value)
   markers.value.forEach((item) => {
     wordListMap.value.set(item.id, item)
@@ -145,7 +141,6 @@ const activeMarkerClickYes = (marker,) => {
   marker.height = 66
   activeMarker.value = marker; // 更新当前高亮的标记点
 }
-
 
 const scanBtn = () => {
   uni.scanCode({

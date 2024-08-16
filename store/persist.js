@@ -1,6 +1,6 @@
+// 持久化插件文件
 // import { PiniaPluginContext } from 'pinia'
-import { deepClone } from 'wot-design-uni/components/common/util'
-
+import { deepClone } from 'wot-design-uni/components/common/util' // 持久化插件
 export function persist({ store }) {
   // 暂存State
   let persistState = deepClone(store.$state)

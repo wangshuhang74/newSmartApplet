@@ -27,7 +27,7 @@ const Toast = useToast()
         width: 100;
         padding-bottom: 100rpx;
         overflow-y: scroll;
-
+        
     }
 
 }

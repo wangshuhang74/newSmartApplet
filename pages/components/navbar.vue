@@ -38,6 +38,7 @@ onMounted(() => { })
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  min-height: 80rpx;
   // height: 160rpx;
   // // #ifdef APP-PLUS-IOS
   // height: 200rpx;

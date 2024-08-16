@@ -98,222 +98,240 @@ const copyBtn = (val) => {
     <navbar :title="'详情'" />
     <view class="details_center">
       <scroll-view class="workInfo_box" style="width: 100%; height: 100%;" :scroll-y="true" :show-scrollbar="false">
-        <view class="top_tit">{{ workInfoApi?.clientName ? workInfoApi?.clientName : '-' }} </view>
+        <view class="title_box">
+          <view class="title_left">
+            <text class="tip"></text>
+            <text class="tit">工单已运维</text>
+          </view>
+          <view class="title_right">
+            <view class="serviceItem" @tap="serviceBtn(1)">
+              <image class="serviceImg" src="http://116.62.107.90:8673/images/icons/service.png" mode="scaleToFill" />
+              <text>联系客服</text>
+            </view>
+            <view class="serviceItem" @tap="serviceBtn(2)">
+              <image class="serviceImg" src="http://116.62.107.90:8673/images/icons/phone.png" mode="scaleToFill" />
+              <text>致电工程师</text>
+            </view>
+          </view>
+        </view>
+        <view class="center_box">
+          <view class="top_tit">{{ workInfoApi?.clientName ? workInfoApi?.clientName : '-' }} </view>
+          <view class="basic_info">
+            <view class="info_item">
+              <view class="label">工单编号:</view>
+              <view class="value">
+                <text>{{ workInfoApi?.orderId ? workInfoApi?.orderId : '-' }}</text>
+                <image @tap="copyBtn(workInfoApi?.orderId)" class="copy"
+                  src="http://116.62.107.90:8673/images/icons/copy.png" mode="scaleToFill" />
+              </view>
+            </view>
 
-        <view class="basic_info">
-          <view class="info_item">
-            <view class="label">工单编号:</view>
-            <view class="value">
-              <text>{{ workInfoApi?.orderId ? workInfoApi?.orderId : '-' }}</text>
-              <image @tap="copyBtn(workInfoApi?.orderId)" class="copy"
-                src="http://116.62.107.90:8673/images/icons/copy.png" mode="scaleToFill" />
+            <view class="info_item">
+              <view class="label">联系人:</view>
+              <view class="value">
+                <text>{{ workInfoApi?.contactName ? workInfoApi?.contactName : '-' }}</text>
+              </view>
+            </view>
+
+
+            <view class="info_item">
+              <view class="label">联系电话:</view>
+              <view class="value">
+                <text>{{ workInfoApi?.contactPhone ? workInfoApi?.contactPhone : '-' }}</text>
+              </view>
+            </view>
+
+
+            <view class="info_item">
+              <view class="label">工单类型:</view>
+              <view class="value">
+                <text>{{ workInfoApi?.orderTypeDetail ? workInfoApi?.orderTypeDetail : '-' }}</text>
+              </view>
+            </view>
+
+
+            <view class="info_item">
+              <view class="label">所属区域:</view>
+              <view class="value">
+                <text>{{ workInfoApi?.areaStr ? workInfoApi?.areaStr : workInfoApi?.area ? workInfoApi?.area : '-'
+                  }}</text>
+              </view>
+            </view>
+
+
+            <view class="info_item ov">
+              <view class="label">详细地址:</view>
+              <view class="value ">
+                <text>{{ workInfoApi?.address ? workInfoApi?.address : '-' }}</text>
+              </view>
             </view>
           </view>
 
-          <view class="info_item">
-            <view class="label">联系人:</view>
-            <view class="value">
-              <text>{{ workInfoApi?.contactName ? workInfoApi?.contactName : '-' }}</text>
+          <view class="car_boxs" v-for="(item, idx) in workInfoApi?.orderExtras" :key="idx">
+            <!-- 新装 -->
+            <view v-if="workInfoApi?.orderType == 3">
+              <view class="info_item">
+                <view class="label">车牌号码/VIN码:</view>
+                <view class="value">
+                  <text>{{ item?.carPlate ? item?.carPlate : '-' }}</text>
+                </view>
+              </view>
+
+              <view class="info_item">
+                <view class="label">新装设备:</view>
+                <view class="value">
+                  <text>{{ item?.installType ? item?.installType : '-' }}</text>
+                </view>
+              </view>
+
+              <view class="info_item">
+                <view class="label">通道数量:</view>
+                <view class="value">
+                  <text>{{ item?.channelNum ? item?.channelNum : '-' }}</text>
+                </view>
+              </view>
+
+
+              <view class="info_item">
+                <view class="label">设备品牌:</view>
+                <view class="value">
+                  <text>{{ item?.deviceBrand ? item?.deviceBrand : '-' }}</text>
+                </view>
+              </view>
+
+
+              <view class="info_item">
+                <view class="label">设备序列号:</view>
+                <view class="value">
+                  <text>{{ item?.deviceSerial ? item?.deviceSerial : '-' }}</text>
+                </view>
+              </view>
+
+              <view class="info_item">
+                <view class="label">设备型号:</view>
+                <view class="value">
+                  <text>{{ item?.deviceModel ? item?.deviceModel : '-' }}</text>
+                </view>
+              </view>
+
+              <view class="info_item">
+                <view class="label">Sim卡号:</view>
+                <view class="value">
+                  <text>{{ item?.simNum ? item?.simNum : '-' }}</text>
+                </view>
+              </view>
+
+              <view class="info_item">
+                <view class="label">预期运维时间:</view>
+                <view class="value">
+                  <text>{{ item?.expectTime ? item?.expectTime : '-' }}</text>
+                </view>
+              </view>
+
+              <view class="info_item">
+                <view class="label">备注:</view>
+                <view class="value">
+                  <text>{{ item?.remark ? item?.remark : '————' }}</text>
+                </view>
+              </view>
+
             </view>
+            <!-- 维护 -->
+            <view v-if="workInfoApi?.orderType == 2">
+              <view class="info_item">
+                <view class="label">车牌号码/VIN码:</view>
+                <view class="value">
+                  <text>{{ item?.carPlate ? item?.carPlate : '-' }}</text>
+                </view>
+              </view>
+
+              <view class="info_item">
+                <view class="label">通道数量:</view>
+                <view class="value">
+                  <text>{{ item?.channelNum ? item?.channelNum : '-' }}</text>
+                </view>
+              </view>
+
+
+              <view class="info_item">
+                <view class="label">设备品牌:</view>
+                <view class="value">
+                  <text>{{ item?.deviceBrand ? item?.deviceBrand : '-' }}</text>
+                </view>
+              </view>
+
+
+              <view class="info_item">
+                <view class="label">设备序列号:</view>
+                <view class="value">
+                  <text>{{ item?.deviceSerial ? item?.deviceSerial : '-' }}</text>
+                </view>
+              </view>
+
+              <view class="info_item">
+                <view class="label">设备型号:</view>
+                <view class="value">
+                  <text>{{ item?.deviceModel ? item?.deviceModel : '-' }}</text>
+                </view>
+              </view>
+
+
+              <view class="info_item">
+                <view class="label">Sim卡号:</view>
+                <view class="value">
+                  <text>{{ item?.simNum ? item?.simNum : '-' }}</text>
+                </view>
+              </view>
+
+              <view class="info_item">
+                <view class="label">故障概述:</view>
+                <view class="value">
+                  <text>{{ item?.faultContent ? item?.faultContent : '-' }}</text>
+                </view>
+              </view>
+
+              <view class="info_item">
+                <view class="label">运维内容:</view>
+                <view class="value">
+                  <text>{{ item?.content ? item?.content : '-' }}</text>
+                </view>
+              </view>
+
+              <view class="info_item">
+                <view class="label">预期运维时间:</view>
+                <view class="value">
+                  <text>{{ item?.expectTime ? item?.expectTime : '-' }}</text>
+                </view>
+              </view>
+
+              <view class="info_item">
+                <view class="label">备注:</view>
+                <view class="value">
+                  <text>{{ item?.remark ? item?.remark : '————' }}</text>
+                </view>
+              </view>
+
+            </view>
+
           </view>
 
-
-          <view class="info_item">
-            <view class="label">联系电话:</view>
-            <view class="value">
-              <text>{{ workInfoApi?.contactPhone ? workInfoApi?.contactPhone : '-' }}</text>
-            </view>
-          </view>
-
-
-          <view class="info_item">
-            <view class="label">工单类型:</view>
-            <view class="value">
-              <text>{{ workInfoApi?.orderTypeDetail ? workInfoApi?.orderTypeDetail : '-' }}</text>
-            </view>
-          </view>
-
-
-          <view class="info_item">
-            <view class="label">所属区域:</view>
-            <view class="value">
-              <text>{{ workInfoApi?.areaStr ? workInfoApi?.areaStr : workInfoApi?.area ? workInfoApi?.area : '-'
-                }}</text>
-            </view>
-          </view>
-
-
-          <view class="info_item ov">
-            <view class="label">详细地址:</view>
-            <view class="value ">
-              <text>{{ workInfoApi?.address ? workInfoApi?.address : '-' }}</text>
+          <view class="workFlow">
+            <view class="flow_item" v-for="(item, idx) in workInfoApi?.orderRecords" :key="idx">
+              <view class="flow_top">
+                <view class="icon"></view>
+                <view class="tit">{{ item?.recordState ? item?.recordState : '-' }}</view>
+                <view class="time">{{ item?.createTime ? item?.createTime : '-' }}</view>
+              </view>
+              <view class="flow_center">
+                <view class="center">
+                  <!-- <span class="work_style">客服主管-张三</span> -->
+                  <span>{{ item?.recordInfo ? item?.recordInfo : '-' }}</span>
+                </view>
+              </view>
             </view>
           </view>
         </view>
 
-        <view class="car_boxs" v-for="(item, idx) in workInfoApi?.orderExtras" :key="idx">
-          <!-- 新装 -->
-          <view v-if="workInfoApi?.orderType == 3">
-            <view class="info_item">
-              <view class="label">车牌号码/VIN码:</view>
-              <view class="value">
-                <text>{{ item?.carPlate ? item?.carPlate : '-' }}</text>
-              </view>
-            </view>
-
-            <view class="info_item">
-              <view class="label">新装设备:</view>
-              <view class="value">
-                <text>{{ item?.installType ? item?.installType : '-' }}</text>
-              </view>
-            </view>
-
-            <view class="info_item">
-              <view class="label">通道数量:</view>
-              <view class="value">
-                <text>{{ item?.channelNum ? item?.channelNum : '-' }}</text>
-              </view>
-            </view>
-
-
-            <view class="info_item">
-              <view class="label">设备品牌:</view>
-              <view class="value">
-                <text>{{ item?.deviceBrand ? item?.deviceBrand : '-' }}</text>
-              </view>
-            </view>
-
-
-            <view class="info_item">
-              <view class="label">设备序列号:</view>
-              <view class="value">
-                <text>{{ item?.deviceSerial ? item?.deviceSerial : '-' }}</text>
-              </view>
-            </view>
-
-            <view class="info_item">
-              <view class="label">设备型号:</view>
-              <view class="value">
-                <text>{{ item?.deviceModel ? item?.deviceModel : '-' }}</text>
-              </view>
-            </view>
-
-            <view class="info_item">
-              <view class="label">Sim卡号:</view>
-              <view class="value">
-                <text>{{ item?.simNum ? item?.simNum : '-' }}</text>
-              </view>
-            </view>
-
-            <view class="info_item">
-              <view class="label">预期运维时间:</view>
-              <view class="value">
-                <text>{{ item?.expectTime ? item?.expectTime : '-' }}</text>
-              </view>
-            </view>
-
-            <view class="info_item">
-              <view class="label">备注:</view>
-              <view class="value">
-                <text>{{ item?.remark ? item?.remark : '————' }}</text>
-              </view>
-            </view>
-
-          </view>
-          <!-- 维护 -->
-          <view v-if="workInfoApi?.orderType == 2">
-            <view class="info_item">
-              <view class="label">车牌号码/VIN码:</view>
-              <view class="value">
-                <text>{{ item?.carPlate ? item?.carPlate : '-' }}</text>
-              </view>
-            </view>
-
-            <view class="info_item">
-              <view class="label">通道数量:</view>
-              <view class="value">
-                <text>{{ item?.channelNum ? item?.channelNum : '-' }}</text>
-              </view>
-            </view>
-
-
-            <view class="info_item">
-              <view class="label">设备品牌:</view>
-              <view class="value">
-                <text>{{ item?.deviceBrand ? item?.deviceBrand : '-' }}</text>
-              </view>
-            </view>
-
-
-            <view class="info_item">
-              <view class="label">设备序列号:</view>
-              <view class="value">
-                <text>{{ item?.deviceSerial ? item?.deviceSerial : '-' }}</text>
-              </view>
-            </view>
-
-            <view class="info_item">
-              <view class="label">设备型号:</view>
-              <view class="value">
-                <text>{{ item?.deviceModel ? item?.deviceModel : '-' }}</text>
-              </view>
-            </view>
-
-
-            <view class="info_item">
-              <view class="label">Sim卡号:</view>
-              <view class="value">
-                <text>{{ item?.simNum ? item?.simNum : '-' }}</text>
-              </view>
-            </view>
-
-            <view class="info_item">
-              <view class="label">故障概述:</view>
-              <view class="value">
-                <text>{{ item?.faultContent ? item?.faultContent : '-' }}</text>
-              </view>
-            </view>
-
-            <view class="info_item">
-              <view class="label">运维内容:</view>
-              <view class="value">
-                <text>{{ item?.content ? item?.content : '-' }}</text>
-              </view>
-            </view>
-
-            <view class="info_item">
-              <view class="label">预期运维时间:</view>
-              <view class="value">
-                <text>{{ item?.expectTime ? item?.expectTime : '-' }}</text>
-              </view>
-            </view>
-
-            <view class="info_item">
-              <view class="label">备注:</view>
-              <view class="value">
-                <text>{{ item?.remark ? item?.remark : '————' }}</text>
-              </view>
-            </view>
-
-          </view>
-
-        </view>
-
-        <view class="workFlow">
-          <view class="flow_item" v-for="(item, idx) in workInfoApi?.orderRecords" :key="idx">
-            <view class="flow_top">
-              <view class="icon"></view>
-              <view class="tit">{{ item?.recordState ? item?.recordState : '-' }}</view>
-              <view class="time">{{ item?.createTime ? item?.createTime : '-' }}</view>
-            </view>
-            <view class="flow_center">
-              <view class="center">
-                <!-- <span class="work_style">客服主管-张三</span> -->
-                <span>{{ item?.recordInfo ? item?.recordInfo : '-' }}</span>
-              </view>
-            </view>
-          </view>
-        </view>
 
       </scroll-view>
     </view>
@@ -339,12 +357,76 @@ const copyBtn = (val) => {
     .workInfo_box {
       width: 100%;
       flex: 1;
-      padding: 30rpx;
-      box-sizing: border-box;
-      background-color: #fff;
-      box-shadow: 0rpx 5rpx 11rpx 2rpx rgba(0, 0, 0, 0.09);
-      border-radius: 14rpx 14rpx 14rpx 14rpx;
       overflow-y: scroll;
+
+      .title_box {
+        width: 100%;
+        height: 90rpx;
+        display: flex;
+        align-items: center;
+        margin-bottom: 20rpx;
+
+        .title_left {
+          width: 50%;
+          display: flex;
+          align-items: center;
+
+          .tip {
+            width: 24rpx;
+            height: 24rpx;
+            border-radius: 2rpx;
+            background: linear-gradient(90deg, #4557d1 0%, #75dbed 100%);
+            box-shadow: 0rpx 5rpx 11rpx 2rpx rgba(0, 0, 0, 0.09);
+          }
+
+          .tit {
+            margin-left: 10rpx;
+            font-weight: bold;
+            font-size: 34rpx;
+            color: #172028;
+          }
+        }
+
+        .title_right {
+          width: 50%;
+          display: flex;
+          align-items: center;
+          height: 90rpx;
+          background: #FFFFFF;
+          box-shadow: -2rpx 3rpx 63rpx 2rpx rgba(161, 167, 179, 0.19);
+          border-radius: 9rpx 9rpx 9rpx 9rpx;
+
+          .serviceItem {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            font-size: 20rpx;
+            color: #1082FF;
+            justify-content: center;
+            align-items: center;
+            padding: 10rpx 0;
+            box-sizing: border-box;
+
+            .serviceImg {
+              width: 30rpx;
+              height: 30rpx;
+              margin-bottom: 10rpx;
+            }
+
+          }
+
+        }
+
+      }
+
+      .center_box {
+        flex: 1;
+        padding: 30rpx;
+        box-sizing: border-box;
+        background-color: #fff;
+        box-shadow: 0rpx 5rpx 11rpx 2rpx rgba(0, 0, 0, 0.09);
+        border-radius: 14rpx 14rpx 14rpx 14rpx;
+      }
 
       .top_tit {
         width: 100%;

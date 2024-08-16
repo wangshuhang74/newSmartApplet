@@ -9,13 +9,12 @@ export const useUserStore = defineStore(
   () => {
     const userInfo = ref({ ...initState })
     const loginForm = ref({})
-    const deviceId = ref(null) // 设备id
+    const deviceId = ref(null) // 设备id 做设备唯一标识
     const lang = ref('zh') // 语言
-    const userMap = ref({
+    const userMap = ref({ // 当前最新定位的经纬度
       longitude: null,
       latitude: null
     })
-
 
     const setUserInfo = (val) => {
       userInfo.value = val
@@ -23,7 +22,6 @@ export const useUserStore = defineStore(
 
     //切换语言
     const switchLang = (locale) => {
-      console.log("🚀 ~ switchLang ~ locale:", locale.value)
       if (lang.value == 'zh') {
         locale.value = 'en';
         lang.value = 'en'
@@ -32,7 +30,6 @@ export const useUserStore = defineStore(
         lang.value = 'zh'
       }
       return true
-
       //以下是需要切换页面标题和tabbar时候刷新的操作
       // uni.redirectTo({
       //   url: '/pages/index/index'
@@ -41,12 +38,11 @@ export const useUserStore = defineStore(
 
     const loginInfo = async (postForm) => {
       const { code, data, msg } = await login(postForm)
-      console.log("🚀 ~ loginInfo ~ data:", data)
       if (code == 0) {
         userInfo.value = data
         userInfo.value.phone = postForm.phone
         loginForm.value = postForm
-        uni.switchTab({
+        uni.switchTab({// 跳转到首页
           url: '/pages/home/index',
         })
       }
@@ -59,7 +55,7 @@ export const useUserStore = defineStore(
 
     const clearUserInfo = async () => {
       userInfo.value = { ...initState }
-      uni.navigateTo({ url: '/pagesAccount/login/index' })
+      uni.reLaunch({ url: '/pagesAccount/login/index' })
       await logout()
     }
 
@@ -71,9 +67,8 @@ export const useUserStore = defineStore(
           icon: 'none',
           duration: 2000
         })
-        uni.reLaunch({
-          url: '/pagesAccount/login/index'
-        })
+        setTimeout(clearUserInfo(), 1200) // 延时跳转
+        return false
       } else {
         // console.log("登录了");
         return true
