@@ -1,16 +1,8 @@
 <script setup>
-import myLocation from '@/static/images/homeMap/location.png'
-import marker1 from '@/static/images/homeMap/marker1.png'
-import marker1_active from '@/static/images/homeMap/marker1_active.png'
-import marker2 from '@/static/images/homeMap/marker2.png'
-import marker2_active from '@/static/images/homeMap/marker2_active.png'
 import { useNotify, useToast, useMessage } from 'wot-design-uni' // ui组件库
 import { toNavigation, makePhoneCall } from '@/utils'
 import { getList } from '@/api'
 import { useUserStore, useWorkStore } from '@/store'
-// #ifdef APP-PLUS
-
-//#endif
 const { workDetail } = storeToRefs(useWorkStore())
 const Toast = useToast()
 
@@ -101,7 +93,7 @@ const addMarkers = (list) => {
       longitude: item.lng,
       width: 48,
       height: 48,
-      iconPath: item.orderType == 3 ? marker1 : marker2, //视图显示图标 
+      iconPath: item.orderType == 3 ? "http://116.62.107.90:8673/images/homeMap/marker1.png" : "http://116.62.107.90:8673/images/homeMap/marker2.png", //视图显示图标 
       workItem: item
     }
   })
@@ -127,7 +119,7 @@ const onMarkerTap = (e) => {
 const activeMarkerClickNo = () => {
   if (!activeMarker?.value) return
   cardFlag.value = false
-  activeMarker.value.iconPath = activeMarker?.value?.workItem?.orderType == 3 ? marker1 : marker2
+  activeMarker.value.iconPath = activeMarker?.value?.workItem?.orderType == 3 ? "http://116.62.107.90:8673/images/homeMap/marker1.png" : "http://116.62.107.90:8673/images/homeMap/marker2.png"
   activeMarker.value.width = 48
   activeMarker.value.height = 48
   wordcard.value = activeMarker?.value?.workItem
@@ -136,7 +128,7 @@ const activeMarkerClickNo = () => {
 const activeMarkerClickYes = (marker,) => {
   cardFlag.value = true
   wordcard.value = marker.workItem
-  marker.iconPath = marker?.workItem?.orderType == 3 ? marker1_active : marker2_active
+  marker.iconPath = marker?.workItem?.orderType == 3 ? "http://116.62.107.90:8673/images/homeMap/marker1_active.png" : "http://116.62.107.90:8673/images/homeMap/marker2_active.png"
   marker.width = 66
   marker.height = 66
   activeMarker.value = marker; // 更新当前高亮的标记点
@@ -180,7 +172,7 @@ const setMyMarker = (val) => {
   markers.value.splice(markers.value.length - 1, 1, {
     latitude: val.latitude,
     longitude: val.longitude,
-    iconPath: myLocation, //视图显示图标 
+    iconPath: "http://116.62.107.90:8673/images/icons/icon1.png", //视图显示图标 
     width: 48,
     height: 48,
   })

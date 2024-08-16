@@ -67,7 +67,7 @@ export const useUserStore = defineStore(
           icon: 'none',
           duration: 2000
         })
-        setTimeout(clearUserInfo(), 1200) // 延时跳转
+        setTimeout(() => { clearUserInfo() }, 1200) // 延时跳转
         return false
       } else {
         // console.log("登录了");

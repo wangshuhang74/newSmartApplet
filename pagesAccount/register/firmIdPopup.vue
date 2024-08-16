@@ -1,6 +1,5 @@
 <script setup>
 import { toWeChatAccount } from '../../utils'
-import qr_code from '../../static/images/logins/qr_code.png'
 
 const myPopup = ref(null)
 const emits = defineEmits(['CloseClick'])
@@ -46,13 +45,14 @@ const handlePopupsClose = () => {
       <view class="firmId_box">
         <view class="firmId_center">
           <view class="firmId_body">
-            <image class="qr_code" :src="qr_code" mode="scaleToFill" />
+            <image class="qr_code" src="http://116.62.107.90:8673/images/logins/qr_code.png" mode="scaleToFill" />
             <view class="tips">
               <view class="tip">温馨提示</view>
               <view class="text">可扫码进入公众号或致电4008-4-96520</view>
             </view>
           </view>
-          <button class="firmId_close_btn" @click="toWeChatAccount(qr_code)">保存二维码打开微信扫一扫</button>
+          <button class="firmId_close_btn"
+            @click="toWeChatAccount('http://116.62.107.90:8673/images/logins/qr_code.png')">保存二维码打开微信扫一扫</button>
 
           <view class="firmId_close">
             <image class="img_close" @tap="handlePopupsClose" src="http://116.62.107.90:8673/images/logins/close.png"

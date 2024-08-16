@@ -1,4 +1,3 @@
-
 <template>
   <wd-toast></wd-toast>
   <view class="register">
@@ -17,10 +16,8 @@
   </view>
 </template>
 
-<script  setup>
+<script setup>
 import navbar from '@/pages/components/navbar.vue'
-import firm from '../../static/images/logins/firm.png'
-import personal from '../../static/images/logins/user.png'
 import { useNotify, useToast, useMessage } from 'wot-design-uni' // ui组件库
 
 const Toast = useToast()
@@ -28,13 +25,13 @@ const { safeAreaInsets } = uni.getSystemInfoSync() // 获取屏幕边界到安�
 const flowList = ref([
   {
     name: '企业账号',
-    icon: firm,
+    icon: "http://116.62.107.90:8673/images/logins/firm.png",
     path: '/pagesAccount/register/firm',
     is_active: false,
   },
   {
     name: '个人账号',
-    icon: personal,
+    icon: "http://116.62.107.90:8673/images/logins/user.png",
     path: '/pagesAccount/register/personal',
     is_active: false,
   },

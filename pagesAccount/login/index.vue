@@ -2,8 +2,6 @@
 
 import { useUserStore } from '@/store'
 import { useNotify, useToast, useMessage } from "wot-design-uni"; // ui组件库
-import zhengyan from '../../static/images/icons/zhengyan.png'
-import biyan from '../../static/images/icons/biyan.png'
 
 const Toast = useToast()
 const { safeAreaInsets } = uni.getSystemInfoSync() // 获取屏幕边界到安全区域距离
@@ -104,7 +102,7 @@ const visibleBtn = () => {
         <input v-else type="password" v-model="postForm.password" placeholder="请输入登录密码" />
         <image v-if="postForm.password" src="http://116.62.107.90:8673/images/icons/clear.png" mode="scaleToFill"
           class="input_icon" @tap="postForm.password = ''" />
-        <image v-if="postForm.password" :src="visible ? zhengyan : biyan" mode="scaleToFill" class="input_visible"
+        <image v-if="postForm.password" :src="visible ? 'http://116.62.107.90:8673/images/icons/zhengyan.png' : 'http://116.62.107.90:8673/images/icons/biyan.png' " mode="scaleToFill" class="input_visible"
           @tap="visibleBtn" />
       </view>
 

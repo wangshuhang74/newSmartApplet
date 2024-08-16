@@ -3,7 +3,7 @@ import navbar from '@/pages/components/navbar.vue'
 import { useNotify, useToast, useMessage } from 'wot-design-uni' // ui组件库
 import { useUserStore } from '@/store'
 import QreviewImage from '../../pages/components/q-previewImage.vue'
-import { getUserArchive,removeUserTag } from '@/api'
+import { getUserArchive, removeUserTag } from '@/api'
 const userStore = useUserStore()
 const { userInfo } = storeToRefs(userStore)
 const Toast = useToast()
@@ -17,9 +17,9 @@ onMounted(() => {
 })
 
 const getUserArchiveFn = async () => {
-  const {code,data,msg} = await getUserArchive()
-  if(code != 0) return 
-  console.log('data',data)
+  const { code, data, msg } = await getUserArchive()
+  if (code != 0) return
+  console.log('data', data)
   userInfoApi.value = data
   userInfoApi.value.areaList = data.area //负责区域
   userInfoApi.value.engieeTypeList = data.engieeType //工程类型
@@ -43,10 +43,10 @@ const cancelTag = (item) => {
     .catch(() => { });
 }
 
-const imgs =ref([]) //设置图片数组
+const imgs = ref([]) //设置图片数组
 
 const lookover = (urls) => {
-  if(!urls) return Toast.warning('暂未上传附件!')
+  if (!urls) return Toast.warning('暂未上传附件!')
   imgs.value = urls.split(',')
   setTimeout(() => {
     previewImage.value.open(imgs.value[0]); // 传入当前选中的图片地址(小程序必须添加$nextTick，解决组件首次加载无图)
@@ -71,14 +71,14 @@ const onLongpress = e => {
 * 你可以根据open和close去做一些操作，例如隐藏导航栏或者隐藏一些原生组件等
 */
 const open = () => { //监听组件显示 （隐藏TabBar和NavigationBar，隐藏video原生组件） //打开时触发
-  
+
   // uni.hideTabBar()
   // uni.setNavigationBarColor({
   //  frontColor: '#000000', // 设置前景色为黑色
   //  backgroundColor: '#000000', // 设置背景色为黑色
   // })
   // data.videoShow = false 
-  console.log("🚀 ~ open ~ open:", )
+  console.log("🚀 ~ open ~ open:",)
 }
 
 const close = () => { //监听组件隐藏 （显示TabBar和NavigationBar，显示video原生组件）// 关闭时触发
@@ -107,14 +107,14 @@ const close = () => { //监听组件隐藏 （显示TabBar和NavigationBar，显
       <view class="item_box">
         <text class="label">所属企业</text>
         <view class="right_text">
-          <text class="text">{{userInfoApi?.orgName ? userInfoApi?.orgName : ''}}</text>
+          <text class="text">{{ userInfoApi?.orgName ? userInfoApi?.orgName : '' }}</text>
         </view>
       </view>
 
       <view class="item_box">
         <text class="label">姓名</text>
         <view class="right_text">
-          <text class="text">{{userInfoApi?.userName ? userInfoApi?.userName : ''}}</text>
+          <text class="text">{{ userInfoApi?.userName ? userInfoApi?.userName : '' }}</text>
         </view>
       </view>
 
@@ -122,7 +122,7 @@ const close = () => { //监听组件隐藏 （显示TabBar和NavigationBar，显
       <view class="item_box">
         <text class="label">性别</text>
         <view class="right_text">
-          <text class="text">{{userInfoApi?.gender ? userInfoApi?.gender : ''}}</text>
+          <text class="text">{{ userInfoApi?.gender ? userInfoApi?.gender : '' }}</text>
         </view>
       </view>
 
@@ -130,14 +130,14 @@ const close = () => { //监听组件隐藏 （显示TabBar和NavigationBar，显
       <view class="item_box">
         <text class="label">联系电话</text>
         <view class="right_text">
-          <text class="text">{{userInfoApi?.phone ? userInfoApi?.phone : ''}}</text>
+          <text class="text">{{ userInfoApi?.phone ? userInfoApi?.phone : '' }}</text>
         </view>
       </view>
 
       <view class="item_box">
         <text class="label">身份证号</text>
         <view class="right_text">
-          <text class="text">{{userInfoApi?.idCard ? userInfoApi?.idCard : ''}}</text>
+          <text class="text">{{ userInfoApi?.idCard ? userInfoApi?.idCard : '' }}</text>
         </view>
       </view>
 
@@ -146,7 +146,7 @@ const close = () => { //监听组件隐藏 （显示TabBar和NavigationBar，显
         <view class="right_text">
           <view class="border_box" v-for="(item, idx) in userInfoApi?.areaList" :key="idx">
             <text class="border_text">{{ item.tagName }}</text>
-            <image class="cancel" @tap="cancelTag(item)" src="../../static/images/my/cancel.png"
+            <image class="cancel" @tap="cancelTag(item)" src="http://116.62.107.90:8673/images/my/cancel.png"
               mode="scaleToFill" />
           </view>
           <view v-if="userInfoApi?.areaList && userInfoApi?.areaList.length == 0" class="no_data">暂无负责区域</view>
@@ -158,9 +158,11 @@ const close = () => { //监听组件隐藏 （显示TabBar和NavigationBar，显
         <view class="right_text">
           <view class="border_box" v-for="(item, idx) in userInfoApi?.engieeTypeList" :key="idx">
             <text class="border_text">{{ item.tagName }}</text>
-            <image class="cancel" @tap="cancelTag(item)" src="../../static/images/my/cancel.png" mode="scaleToFill" />
+            <image class="cancel" @tap="cancelTag(item)" src="http://116.62.107.90:8673/images/my/cancel.png"
+              mode="scaleToFill" />
           </view>
-          <view v-if="userInfoApi?.engieeTypeList && userInfoApi?.engieeTypeList.length == 0" class="no_data">暂无工程类型</view>
+          <view v-if="userInfoApi?.engieeTypeList && userInfoApi?.engieeTypeList.length == 0" class="no_data">暂无工程类型
+          </view>
         </view>
       </view>
 
@@ -172,7 +174,7 @@ const close = () => { //监听组件隐藏 （显示TabBar和NavigationBar，显
       <view class="item_box">
         <text class="label">资格证发证日期</text>
         <view class="right_text">
-          <text class="text">{{userInfoApi?.licenseDate ? userInfoApi?.licenseDate : ''}}</text>
+          <text class="text">{{ userInfoApi?.licenseDate ? userInfoApi?.licenseDate : '' }}</text>
         </view>
       </view>
 
@@ -180,7 +182,7 @@ const close = () => { //监听组件隐藏 （显示TabBar和NavigationBar，显
       <view class="item_box">
         <text class="label">证书编号</text>
         <view class="right_text">
-          <text class="text">{{userInfoApi?.licenseId ? userInfoApi?.licenseId : ''}}</text>
+          <text class="text">{{ userInfoApi?.licenseId ? userInfoApi?.licenseId : '' }}</text>
         </view>
       </view>
 
@@ -188,14 +190,14 @@ const close = () => { //监听组件隐藏 （显示TabBar和NavigationBar，显
       <view class="item_box">
         <text class="label">技能等级</text>
         <view class="right_text">
-          <text class="text">{{userInfoApi?.skillLevel ? userInfoApi?.skillLevel : ''}}</text>
+          <text class="text">{{ userInfoApi?.skillLevel ? userInfoApi?.skillLevel : '' }}</text>
         </view>
       </view>
 
       <view class="item_box">
         <text class="label">工种名称</text>
         <view class="right_text">
-          <text class="text">{{userInfoApi?.workType ? userInfoApi?.workType : ''}}</text>
+          <text class="text">{{ userInfoApi?.workType ? userInfoApi?.workType : '' }}</text>
         </view>
       </view>
 

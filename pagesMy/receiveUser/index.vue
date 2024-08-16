@@ -1,8 +1,6 @@
 <script setup>
 import navbar from '@/pages/components/navbar.vue'
 import { useNotify, useToast, useMessage } from 'wot-design-uni' // ui组件库
-import Alipay from "../../static/images/my/Alipay.png"
-import WeChatPay from "../../static/images/my/WeChatPay.png"
 import { getPayClient, getList, userPayment } from '@/api'
 
 const Toast = useToast()
@@ -104,23 +102,25 @@ function payAmountBlur() { }
       <view class="pay_box">
         <wd-radio-group v-model="payForm.payWay" shape="dot" @change="radioChange">
           <wd-radio value="支付宝">
-            <image class="zfb_img" src="../../static/images/my/zfb.png" mode="scaleToFill" />
+            <image class="zfb_img" src="http://116.62.107.90:8673/images/my/zfb.png" mode="scaleToFill" />
             <text class="pay_text">支付宝支付</text>
           </wd-radio>
 
           <wd-radio value="微信">
-            <image class="wx_img" src="../../static/images/my/wx.png" mode="scaleToFill" />
+            <image class="wx_img" src="http://116.62.107.90:8673/images/my/wx.png" mode="scaleToFill" />
             <text class="pay_text">微信支付</text>
           </wd-radio>
 
           <wd-radio value="现金">
-            <image class="xj_img" src="../../static/images/my/xj.png" mode="scaleToFill" />
+            <image class="xj_img" src="http://116.62.107.90:8673/images/my/xj.png" mode="scaleToFill" />
             <text class="pay_text">现金支付</text>
           </wd-radio>
         </wd-radio-group>
 
         <view class="qr_code_box" v-if="payForm.payWay == '支付宝' || payForm.payWay == '微信'">
-          <image :src="payForm.payWay == '支付宝' ? Alipay : WeChatPay" class="qr_img" mode="scaleToFill" />
+          <image
+            :src="payForm.payWay == '支付宝' ? 'http://116.62.107.90:8673/images/my/Alipay.png' : 'http://116.62.107.90:8673/images/my/WeChatPay.png'"
+            class="qr_img" mode="scaleToFill" />
         </view>
       </view>
 

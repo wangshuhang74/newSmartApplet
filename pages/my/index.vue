@@ -4,13 +4,6 @@ const { safeAreaInsets } = uni.getSystemInfoSync()
 import { useUserStore } from '@/store'
 
 import { useNotify, useToast, useMessage } from 'wot-design-uni' // ui组件库
-import icon1 from '@/static/images/icons/grda_icon.png'
-import sk_icon from '@/static/images/icons/sk_icon.png'
-import qh_icon from '@/static/images/icons/qh_icon.png'
-import about_icon from '@/static/images/icons/about_icon.png'
-import mm_icon from '@/static/images/icons/mm_icon.png'
-import gj_icon from '@/static/images/icons/gj_icon.png'
-import item_arrow from '@/static/images/icons/item_arrow.png'
 
 const userStore = useUserStore()
 const { userInfo } = storeToRefs(userStore)
@@ -27,49 +20,49 @@ const fnList = [
     id: 1,
     title: '个人档案',
     path: '/pagesMy/myInfo/index',
-    icon: icon1,
+    icon: "http://116.62.107.90:8673/images/icons/grda_icon.png",
     type: 'navigateTo'
   },
   {
     id: 2,
     title: '用户收款',
     path: '/pagesMy/receiveUser/index',
-    icon: sk_icon,
+    icon: "http://116.62.107.90:8673/images/icons/sk_icon.png",
     type: 'navigateTo'
   },
   {
     id: 3,
     title: '切换账号',
     path: '/pagesMy/switchAccount/index',
-    icon: qh_icon,
+    icon: "http://116.62.107.90:8673/images/icons/qh_icon.png",
     type: 'navigateTo'
   },
   {
     id: 4,
     title: '关于我们',
     path: '/pagesMy/about/index',
-    icon: about_icon,
+    icon: "http://116.62.107.90:8673/images/icons/about_icon.png",
     type: 'navigateTo'
   },
   //{
   //  id: 7,
   //  title: '切换语言',
   //  path: '/pagesMy/i18n/index',
-  //  icon: qh_icon,
+  //  icon: "http://116.62.107.90:8673/images/icons/qh_icon.png",
   //  type: 'navigateTo'
   //},
   {
     id: 5,
     title: '修改密码',
     path: '/pagesMy/changePassword/index',
-    icon: mm_icon,
+    icon: "http://116.62.107.90:8673/images/icons/mm_icon.png",
     type: 'navigateTo'
   },
   {
     id: 6,
     title: '退出登录',
     path: '/pagesAccount/login/index',
-    icon: gj_icon,
+    icon: "http://116.62.107.90:8673/images/icons/gj_icon.png",
     type: ''
   },
 ]
@@ -130,7 +123,7 @@ const itemClick = (item) => {
       <view class="my_fn_item" v-for="(item, index) in fnList" :key="index" @tap="itemClick(item)">
         <image class="my_fn_icon" :src="item.icon" mode=""></image>
         <view class="item_text">{{ item.title }}</view>
-        <image class="item_arrow" :src="item_arrow" mode=""></image>
+        <image class="item_arrow" src="http://116.62.107.90:8673/images/icons/item_arrow.png" mode=""></image>
       </view>
     </view>
   </view>

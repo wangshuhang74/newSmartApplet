@@ -1,9 +1,6 @@
 <script setup>
 import { useUserStore } from '@/store'
 // import { getAppTodoNum } from '@/api'
-import consult from '@/static/images/fns/consult.png'
-import workInitiate from '@/static/images/fns/workInitiate.png'
-import workInquire from '@/static/images/fns/workInquire.png'
 
 
 const userStore = useUserStore()
@@ -19,7 +16,7 @@ const fnList = ref([
   {
     id: '1',
     name: '发起工单',
-    icon: workInitiate,
+    icon: 'http://116.62.107.90:8673/images/fns/workInitiate.png',
     msgNum: 0,
     path: '/pagesFn/workInitiate/index',
     permission: [1, 2, 3] // 1企业 2 主管 3 个人
@@ -27,7 +24,7 @@ const fnList = ref([
   {
     id: '2',
     name: '工单查询',
-    icon: workInquire,
+    icon: 'http://116.62.107.90:8673/images/fns/workInquire.png',
     msgNum: 0,
     path: '/pagesFn/workInquire/index',
     permission: [1, 2, 3]
@@ -35,7 +32,7 @@ const fnList = ref([
   {
     id: '3',
     name: '在线咨询',
-    icon: consult,
+    icon: 'http://116.62.107.90:8673/images/fns/consult.png',
     msgNum: 0,
     path: '/pagesFn/consult/index',
     permission: [1, 2, 3]

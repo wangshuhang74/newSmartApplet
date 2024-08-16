@@ -64,7 +64,7 @@
 			}
 		]
 	},
-	"subPackages": [
+	"subPackages": [ // 分包
 		{
 			"root": "pagesAccount",
 			"pages": [
@@ -211,7 +211,7 @@
 			]
 		}
 	],
-	"preloadRule": {
+	"preloadRule": { // 打开哪个主包页面 预加载对应的分包页面
 		"pages/home/index": {
 			"network": "all",
 			"packages": [
