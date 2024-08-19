@@ -33,7 +33,8 @@ watch(() => {
 })
 
 onShow(() => {
-  userStore.isLoginFn()
+  const isLogin = userStore.isLoginFn()
+  if (isLogin && userMap.value.latitude && userMap.value.longitude) getListFn() // 每次打开这个页面如果已经定位了就获取列表
   if (wordList.value.length == 0) {
     getLocation()
   }

@@ -16,27 +16,27 @@ onShow(() => {
 })
 
 const fnList = [
-  {
-    id: 1,
-    title: '个人档案',
-    path: '/pagesMy/myInfo/index',
-    icon: "http://116.62.107.90:8673/images/icons/grda_icon.png",
-    type: 'navigateTo'
-  },
-  {
-    id: 2,
-    title: '用户收款',
-    path: '/pagesMy/receiveUser/index',
-    icon: "http://116.62.107.90:8673/images/icons/sk_icon.png",
-    type: 'navigateTo'
-  },
-  {
-    id: 3,
-    title: '切换账号',
-    path: '/pagesMy/switchAccount/index',
-    icon: "http://116.62.107.90:8673/images/icons/qh_icon.png",
-    type: 'navigateTo'
-  },
+  // {
+  //   id: 1,
+  //   title: '个人档案',
+  //   path: '/pagesMy/myInfo/index',
+  //   icon: "http://116.62.107.90:8673/images/icons/grda_icon.png",
+  //   type: 'navigateTo'
+  // },
+  // {
+  //   id: 2,
+  //   title: '用户收款',
+  //   path: '/pagesMy/receiveUser/index',
+  //   icon: "http://116.62.107.90:8673/images/icons/sk_icon.png",
+  //   type: 'navigateTo'
+  // },
+  // {
+  //   id: 3,
+  //   title: '切换账号',
+  //   path: '/pagesMy/switchAccount/index',
+  //   icon: "http://116.62.107.90:8673/images/icons/qh_icon.png",
+  //   type: 'navigateTo'
+  // },
   {
     id: 4,
     title: '关于我们',

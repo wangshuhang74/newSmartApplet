@@ -290,6 +290,13 @@ const demo8Confirm = (val) => {
                         text-align: right;
                     }
                 }
+                .wd-calendar__value--placeholder{
+                    font-size: 24rpx;
+                    margin-right: 4rpx;
+                }
+                .wd-icon-arrow-right{
+                    transform: rotate(90deg);
+                }
             }
 
             .label {

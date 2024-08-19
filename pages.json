@@ -64,7 +64,7 @@
 			}
 		]
 	},
-	"subPackages": [ // 分包
+	"subPackages": [
 		{
 			"root": "pagesAccount",
 			"pages": [
@@ -200,6 +200,15 @@
 					}
 				},
 				{
+					"path": "evaluate/index",
+					"name": "evaluate",
+					"needLogin": true,
+					"style": {
+						"navigationStyle": "custom",
+						"navigationBarTitleText": "评价"
+					}
+				},
+				{
 					"path": "components/workDetails",
 					"name": "workDetails",
 					"needLogin": true,
@@ -211,7 +220,7 @@
 			]
 		}
 	],
-	"preloadRule": { // 打开哪个主包页面 预加载对应的分包页面
+	"preloadRule": {
 		"pages/home/index": {
 			"network": "all",
 			"packages": [

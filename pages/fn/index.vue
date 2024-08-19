@@ -36,14 +36,16 @@ const fnList = ref([
     msgNum: 0,
     path: '/pagesFn/consult/index',
     permission: [1, 2, 3]
+
   },
 ])
 
 // onMounted(() => {})
 
-const toPages = (item) => {
+const toPages = (path) => {
+  console.log("🚀 ~ toPages ~ path:", path)
   uni.navigateTo({
-    url: item.path,
+    url: path,
   })
 }
 </script>
@@ -57,7 +59,7 @@ const toPages = (item) => {
       <image class="image_bg" src="http://116.62.107.90:8673/images/fns/fn_bg.png" mode="scaleToFill" />
     </view>
     <view class="fn_list">
-      <view class="task_item" v-for="(item, index) in fnList" :key="index" @tap="toPages(item)"
+      <view class="task_item" v-for="(item, index) in fnList" :key="index" @tap="toPages(item.path)"
         :class="{ isHide: item?.permission && !item?.permission.includes(userInfo.userType) }">
         <image :src="item.icon" mode="scaleToFill" />
         <view class="name">
