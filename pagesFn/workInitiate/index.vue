@@ -8,7 +8,7 @@ console.log("🚀 ~ Toast:", Toast)
 const postForm = ref({
     demo1: null,
     demo2: null,
-    demo3: "demo3",
+    demo3: null,
     demo4: null,
     demo5: null,
     demo6: null,
@@ -56,18 +56,26 @@ const openSelect = (item, type) => {
             selectValue.value = item.demo2
             break;
         case 'demo3':
-            selectType.value = 'radio'
+            selectType.value = 'checkbox'
             selectColumns.value = [
                 {
-                    label: 'demo3',
-                    value: 'demo3'
+                    label: '3',
+                    value: '3'
                 },
                 {
-                    label: 'demo31',
-                    value: 'demo31'
+                    label: '31',
+                    value: '31'
+                },
+                {
+                    label: '2',
+                    value: '2'
                 },
             ]
-            selectValue.value = item.demo3
+            //item.demo3 如果 最后一个字符串为 "," 就删除这个字符串
+            item.demo3 = item.demo3?.replace(/,$/, "")
+            selectValue.value = []
+            selectValue.value = item.demo3?.split(",")
+            console.log("🚀 ~ openSelect ~ selectValue.value:", selectValue.value)
             break;
         case 'demo6':
             selectType.value = 'radio'
@@ -102,8 +110,38 @@ const openSelect = (item, type) => {
 }
 
 const selectClose = ({ value }) => {
-    postForm.value[selectDataType.value] = value
+    if (!value) return
+    if (selectDataType.value == "demo3") {
+        // postForm.value.demo3 = postForm.value.demo3 ? postForm.value.demo3 + "," + value.join(",") : '' + value.join(",")
+        postForm.value.demo3 = value.join(",")
+        // postForm.value.demo3 去重 
+        postForm.value.demo3 = Array.from(new Set(postForm.value.demo3.split(","))).join(",")
+    } else {
+        postForm.value.demo3 = value
+    }
     console.log("🚀 ~ selectClose ~ value:", value)
+}
+
+const carInpFocus = () => {
+    if (postForm.value.demo3) {
+        const lastIndex = postForm.value.demo3.lastIndexOf(",");
+        const lastChar = postForm.value.demo3.charAt(lastIndex - 1);
+        console.log("🚀 ~ carInpFocus ~ lastChar:", lastChar)
+        if (lastChar !== ",") postForm.value.demo3 += ","
+    }
+}
+
+const scanBtn = () => {
+    uni.scanCode({
+        success: (res) => {
+            // postForm.value.demo3 = res.result
+            postForm.value.demo3 = postForm.value.demo3 ? postForm.value.demo3 + "," + res.result : '' + res.result
+            postForm.value.demo3 = Array.from(new Set(postForm.value.demo3.split(","))).join(",")
+        },
+        fail: (err) => {
+            console.log("err", err);
+        }
+    })
 }
 
 const submitForm = () => {
@@ -170,14 +208,18 @@ const demo8Confirm = (val) => {
                 </view>
 
                 <view class="inp_item">
-                    <view class="label">车牌号码/VIN码:</view>
-                    <view class="inp_value" @tap="openSelect(postForm, 'demo3')">
+                    <view class="label" @tap="openSelect(postForm, 'demo3')">车牌号码/VIN码:</view>
+                    <view class="inp_value">
                         <view class="val">
-                            <text v-if="postForm.demo3">{{ postForm.demo3 }}</text>
-                            <text v-else class="placeholderText">请选择</text>
+                            <view>
+                                <input class="car_inp" type="text" v-model="postForm.demo3" placeholder="请扫码/输入/选择(可多选)"
+                                    placeholder-class="search_input_placeholder" @focus="carInpFocus">
+                            </view>
                         </view>
                         <image class="select_icon" src="http://116.62.107.90:8673/images/icons/select_icon.png"
-                            mode="scaleToFill" />
+                            mode="scaleToFill" @tap="openSelect(postForm, 'demo3')" />
+                        <image class="scan_icon" src="http://116.62.107.90:8673/images/homeMap/scan.png"
+                            mode="scaleToFill" @tap="scanBtn" />
                     </view>
                 </view>
 
@@ -290,11 +332,13 @@ const demo8Confirm = (val) => {
                         text-align: right;
                     }
                 }
-                .wd-calendar__value--placeholder{
+
+                .wd-calendar__value--placeholder {
                     font-size: 24rpx;
                     margin-right: 4rpx;
                 }
-                .wd-icon-arrow-right{
+
+                .wd-icon-arrow-right {
                     transform: rotate(90deg);
                 }
             }
@@ -326,11 +370,31 @@ const demo8Confirm = (val) => {
                     display: flex;
                     align-items: center;
 
+                    .car_inp {
+                        border: none;
+                        width: 100%;
+                        height: 100%;
+                        background: transparent;
+                        background-color: transparent;
+                    }
+
+                    :deep(.search_input_placeholder) {
+                        font-size: 24rpx;
+                        color: #bfbfbf;
+                    }
+
                     .select_icon {
                         width: 24rpx;
                         height: 13rpx;
                         flex-shrink: 0;
                         padding-right: 12rpx;
+                    }
+
+                    .scan_icon {
+                        width: 30rpx;
+                        height: 30rpx;
+                        flex-shrink: 0;
+                        padding-left: 12rpx;
                     }
 
                     .val {

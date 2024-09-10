@@ -54,7 +54,7 @@ const getListFn = async () => {
   wordList.value = []
   newEquip.value = ref({})
   oldMaintain.value = ref({})
-  markers.value = [{ orderId: getTimes(), lat: 39.90923, lng: 116.397428, orderType: 3, }]
+  markers.value = []
   // setMyMarker(userMap.value)
   let getForm1 = {
     pageNum: 1,
@@ -80,7 +80,7 @@ const getListFn = async () => {
     oldMaintain.value = data2;
 
     wordList.value = [...data1.records, ...data2.records]
-    addMarkers([...wordList.value, { orderId: getTimes(), lat: 39.90923, lng: 116.397428, orderType: 3, }]);
+    addMarkers(wordList.value);
   } catch (error) {
     Toast.error("获取工单列表失败");
     console.error(error);

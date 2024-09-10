@@ -12,6 +12,7 @@ const message = useMessage(); // 消息弹框
 const workInfo = ref({}) // 传入的工单信息
 const workInfoApi = ref({}) // 传入的工单信息
 const { userInfo } = storeToRefs(useUserStore())
+console.log("🚀 ~ userInfo:", userInfo.value)
 
 
 const getWork = ref({
@@ -88,6 +89,10 @@ const copyBtn = (val) => {
       console.log("🚀 ~ file: workDetails.vue ~ line 30 ~ fail", fail)
     },
   })
+}
+
+const serviceBtn = (type) => {
+  console.log("🚀 ~ serviceBtn ~ type:", type)
 }
 
 </script>
@@ -322,11 +327,14 @@ const copyBtn = (val) => {
                 <view class="tit">{{ item?.recordState ? item?.recordState : '-' }}</view>
                 <view class="time">{{ item?.createTime ? item?.createTime : '-' }}</view>
               </view>
-              <view class="flow_center">
+              <!-- 普通用户不显示具体信息 -->
+              <view class="flow_center" v-if="userInfo.userType == 3">
                 <view class="center">
-                  <!-- <span class="work_style">客服主管-张三</span> -->
                   <span>{{ item?.recordInfo ? item?.recordInfo : '-' }}</span>
                 </view>
+              </view>
+              <view class="flow_center_else" v-else>
+
               </view>
             </view>
           </view>
@@ -349,18 +357,22 @@ const copyBtn = (val) => {
   .details_center {
     flex: 1;
     height: 90%;
-    padding: 30rpx;
+    // padding: 30rpx;
+    padding-top: 30rpx;
+    width: 100%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
 
     .workInfo_box {
-      width: 100%;
+      width: calc(100% - 60rpx);
+      margin: 0 auto;
       flex: 1;
       overflow-y: scroll;
 
       .title_box {
-        width: 100%;
+        width: calc(100% - 60rpx);
+        margin: 0 auto;
         height: 90rpx;
         display: flex;
         align-items: center;
@@ -421,6 +433,8 @@ const copyBtn = (val) => {
 
       .center_box {
         flex: 1;
+        width: calc(100% - 60rpx);
+        margin: 0 auto;
         padding: 30rpx;
         box-sizing: border-box;
         background-color: #fff;
@@ -512,7 +526,7 @@ const copyBtn = (val) => {
 
         .flow_item {
           width: 100%;
-          min-height: 120rpx;
+          min-height: 80rpx;
 
           &:first-child {
             .flow_top {
@@ -528,7 +542,9 @@ const copyBtn = (val) => {
           }
 
           &:last-child {
-            .flow_center {
+
+            .flow_center,
+            .flow_center_else {
               border-left: none;
             }
           }
@@ -597,6 +613,14 @@ const copyBtn = (val) => {
               }
             }
           }
+
+          .flow_center_else {
+            width: 98%;
+            height: 20rpx;
+            border-left: 4rpx solid #DBDBDB;
+            margin-left: 10rpx;
+          }
+
         }
       }
     }

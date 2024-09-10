@@ -22,6 +22,8 @@ const postForm = ref({
   area: null,//企业区域行政区码
   address: null,//企业详细地址
   license: null,//营业执照
+  userName: null,//用户名
+
 })
 
 onLoad(() => {
@@ -60,7 +62,7 @@ function handleConfirm({ value }) {
 }
 
 const registerBtn = async () => {
-  console.log("postForm", postForm.value);
+  if (!postForm.value.userName) return Toast.warning('请输入企业用户名称')
   if (!postForm.value.captcha) return Toast.warning('请输入验证码')
   if (!postForm.value.password) return Toast.warning('请输入密码')
   if (!postForm.value.repeatPwd) return Toast.warning('请确认密码')
@@ -154,6 +156,13 @@ const SendCodeApi = async () => {
   <view class="register_firm">
     <navbar :title="'注册企业账号'" />
     <view class="firm_flow">
+      <view class="input_item">
+        <view class="left_icon">
+          <image src="http://116.62.107.90:8673/images/icons/userName.png"></image>
+        </view>
+        <input v-model="postForm.userName" type="text" class="input" placeholder="请输入企业用户名称" />
+      </view>
+
       <view class="input_item">
         <view class="left_icon">
           <image src="http://116.62.107.90:8673/images/icons/phone_icon.png"></image>
